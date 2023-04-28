@@ -8,7 +8,7 @@ type Direction = 'left' | 'right' | 'up' | 'down'
 
 function App() {
   const [ithacaCards, setIthacaCards] = useState([Cards[0]])
-  const [lastDirection, setLastDirection] = useState<Direction>('right')
+  // const [lastDirection, setLastDirection] = useState<Direction>('right')
 
   const swiped = (direction: Direction, cardNumber: number) => {
     if (direction === 'up' || direction === 'down') {
@@ -23,7 +23,7 @@ function App() {
         // ithacaCards.push(Cards[nextCard])
       }
     }
-    setLastDirection(direction)
+    // setLastDirection(direction)
   }
 
   const outOfFrame = (cardNumber: number) => {
