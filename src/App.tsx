@@ -11,7 +11,7 @@ function App() {
   // const [lastDirection, setLastDirection] = useState<Direction>('right')
 
   const swiped = (direction: Direction, cardNumber: number) => {
-    if (direction === 'up' || direction === 'down') {
+    if (direction === 'up') {
       return
     }
     console.log('removing: ' + cardNumber)
@@ -50,17 +50,20 @@ function App() {
               swipeRequirementType="position"
               swipeThreshold={100}
               preventSwipe={
-                card.right == null ? 
+                card.right != null ? 
                   (
-                    card.left == null ? ['up', 'down', 'right', 'left'] : ['up', 'down', 'right']
-                  ) :
-                  (
-                    card.left == null ? ['up', 'down', 'left'] : ['up', 'down']
-                  ) 
+                    card.left != null ? 
+                    (
+                      card.down != null ? ['up'] : ['up', 'down']
+                    ) : 
+                    ['up', 'down', 'left']
+                  ) : 
+                  ['up', 'down', 'left', 'right']
               }
             >
-              <div style={{ backgroundImage: 'url(' + card.img + ')' }} className='card'>
-                <h3>{card.img}</h3>
+              {/* <img src={require(`images/${card.img}`).default} className='card' alt='' /> */}
+              <div style={{ backgroundImage: 'url(/' + card.img + ')' }} className='card'>
+                {/* <h3>{card.img}</h3> */}
               </div>
             </TinderCard>
           )}
@@ -68,6 +71,11 @@ function App() {
         <div className='nextCard'>
             {ithacaCards[0].right}
           </div>
+      </div>
+      <div className='cardRow'>
+        <div className='nextCard'>
+          {ithacaCards[0].down}
+        </div>
       </div>
       {/* {
         lastDirection ?
